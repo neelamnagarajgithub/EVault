@@ -4,12 +4,18 @@
   "description": "This is Project built for store ,record and share the legal records which is  built using Eth Blockchain",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "deploy_localhost":"npx hardhat ignition deploy ./ignition/modules/deploy.ts --network localhost",
+  "deploy_sepolia":"npx hardhat ignition deploy ./ignition/modules/deploy.ts --network sepolia"
   },
   "author": "Nagaraj,Rithwik",
   "license": "ISC",
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
     "hardhat": "^2.22.4"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.2",
+    "@openzeppelin/contracts-upgradeable": "^5.0.2",
+    "dotenv": "^16.4.5"
   }
 }
