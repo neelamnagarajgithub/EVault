@@ -1,11 +1,17 @@
-import express from "express";
+import express from 'express'
 import morgan from "morgan";
 import cors from "cors";
 import mongoose from 'mongoose';
 import dotenv from "dotenv";
-
+import googleRouter from "./routes/OAuth-route.js";
 const app = express();
 dotenv.config();
+
+app.use(cors({
+  origin:"http://localhost:3000",
+  methods:['GET','POST'],
+  credentials:true,
+}))
 
 const DB=process.env.MONGO_DB_URL.replace('<password>',process.env.MONGO_PASSWORD);
 
@@ -16,6 +22,8 @@ mongoose.connect(DB).then(()=>{
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
+
+app.use('/',googleRouter);
 
 const port = process.env.PORT || 7500;
 app.listen(port, () => {

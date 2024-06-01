@@ -4,8 +4,8 @@
   "description": "This is Project built for store ,record and share the legal records which is  built using Eth Blockchain",
   "main": "index.js",
   "scripts": {
-  "deploy_localhost":"npx hardhat ignition deploy ./ignition/modules/deploy.ts --network localhost",
-  "deploy_sepolia":"npx hardhat ignition deploy ./ignition/modules/deploy.ts --network sepolia"
+    "deploy_localhost": "npx hardhat ignition deploy ./ignition/modules/deploy.ts --network localhost",
+    "deploy_sepolia": "npx hardhat ignition deploy ./ignition/modules/deploy.ts --network sepolia"
   },
   "author": "Nagaraj,Rithwik",
   "license": "ISC",
