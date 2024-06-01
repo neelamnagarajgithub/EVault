@@ -2,7 +2,11 @@ import Image from "next/image";
 import Navbar from "./_components/_Navigation/Navbar";
 import HeroSection from "./_components/_Pages/HeroSection";
 import ServicesWeOfferSection from "./_components/_Pages/ServicesWeOfferSection";
-import backgroundImage from "@/public/image.png";
+import backgroundImage from "@/public/imgage_2.jpg";
+import TestimonialsSection from "./_components/_Pages/TestimonialsSection";
+import ContactUsButton from "./_components/contacusButton";
+import ContactusForm from "./_components/ContactusForm";
+import Footer from "./_components/_Pages/Footer";
 
 export default function Page() {
   return (
@@ -17,6 +21,9 @@ export default function Page() {
       </div>
       <HeroSection />
       <ServicesWeOfferSection />
+      <TestimonialsSection />
+      <ContactUsButton />
+      <Footer />
     </main>
   );
 }
