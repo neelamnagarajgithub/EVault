@@ -1,5 +1,7 @@
 import Image from "next/image";
 import backgroundImage from "@/public/image.png";
+import Link from "next/link";
+import { BiArrowFromLeft } from "react-icons/bi";
 
 export default function HeroSection() {
   return (
