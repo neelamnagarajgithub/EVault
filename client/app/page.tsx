@@ -1,8 +1,9 @@
+import Navbar from "./_components/_Navigation/Navbar";
+
 export default function Page() {
   return (
-    <div>
-      <div>hello</div>
-      <w3m-button />
-    </div>
+    <main className=" flex flex-col">
+      <Navbar />
+    </main>
   );
 }
