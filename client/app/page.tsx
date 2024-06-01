@@ -6,6 +6,7 @@ import backgroundImage from "@/public/imgage_2.jpg";
 import TestimonialsSection from "./_components/_Pages/TestimonialsSection";
 import ContactUsButton from "./_components/contacusButton";
 import ContactusForm from "./_components/ContactusForm";
+import Footer from "./_components/_Pages/Footer";
 
 export default function Page() {
   return (
@@ -22,6 +23,7 @@ export default function Page() {
       <ServicesWeOfferSection />
       <TestimonialsSection />
       <ContactUsButton />
+      <Footer />
     </main>
   );
 }
