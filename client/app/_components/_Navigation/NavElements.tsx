@@ -23,12 +23,6 @@ export default function NavElements() {
         >
           Login
         </Link>
-        <Link
-          href="/auth/google"
-          className="bg-transparent text-blue-500 px-4 py-2 mx-2 rounded-lg text-xl font-bold hover:bg-blue-900 transition-all duration-300 ease-in-out border-2 border-blue-900"
-        >
-          Register
-        </Link>
       </ul>
       <div className="md:hidden flex">
         <button
