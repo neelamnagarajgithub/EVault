@@ -8,6 +8,7 @@ import { config } from "@/config";
 import Web3ModalProvider from "@/context";
 import { StoreProvider } from "./_store/storeProvider";
 import Provider from "./_util/provider";
+import Navbar from "./_components/_Navigation/Navbar";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -25,7 +26,10 @@ export default function RootLayout({
       <html lang="en">
         <body>
           <Web3ModalProvider initialState={initialState}>
-            <Provider>{children}</Provider>
+            <Provider>
+              <Navbar />
+              {children}
+            </Provider>
           </Web3ModalProvider>
         </body>
       </html>
