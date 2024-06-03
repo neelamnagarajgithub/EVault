@@ -1,12 +1,9 @@
-import backgroundImage from "@/public/imgage_2.jpg";
-import Image from "next/image";
 import Navbar from "./_components/_Navigation/Navbar";
 import Footer from "./_components/_Pages/Footer";
 import HeroSection from "./_components/_Pages/HeroSection";
 import ServicesWeOfferSection from "./_components/_Pages/ServicesWeOfferSection";
 import TestimonialsSection from "./_components/_Pages/TestimonialsSection";
 import ContactUsButton from "./_components/contacusButton";
-import herosectionimage from "@/public/herosectionimage.jpg";
 export default function Page() {
   return (
     <main className=" flex flex-col relative">
