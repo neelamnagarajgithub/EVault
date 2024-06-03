@@ -17,7 +17,7 @@ export default function HeroSection() {
           </p>
           <div className="flex items-center gap-4">
             <Link
-              href="/account"
+              href="/login"
               className=" bg-blue-800 font-semibold font-mono text-2xl w-max px-4 py-2 rounded-lg text-white hover:bg-blue-900 transition-all duration-300 ease-in-out mt-4 flex justify-center items-center gap-1 hover:gap-2"
             >
               Get started
