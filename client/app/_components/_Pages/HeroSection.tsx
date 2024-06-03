@@ -1,12 +1,14 @@
 import Link from "next/link";
 import { BiArrowFromLeft } from "react-icons/bi";
+import herosectionimage from "@/public/herosectionimage.jpg";
+import Image from "next/image";
 
 export default function HeroSection() {
   return (
     <section className="relative flex flex-col items-center justify-center h-screen w-full">
       <div className=" h-screen w-full flex justify-center items-center px-40">
-        <div className="flex gap-2 flex-col">
-          <h1 className=" text-white text-5xl font-mono font-bold">
+        <div className="flex gap-2 flex-col ">
+          <h1 className=" text-white text-5xl font-mono font-bold ">
             Revolutionizing Legal Record Management with Blockchain Technology
           </h1>
           <p className=" text-white">
@@ -27,6 +29,13 @@ export default function HeroSection() {
               Learn more
             </Link>
           </div>
+        </div>
+        <div className=" relative w-[1500px] h-[700px] flex justify-center items-center ">
+          <Image
+            src={herosectionimage}
+            alt="hero-section-image"
+            className="object-cover object-center w-full h-full "
+          />
         </div>
       </div>
     </section>

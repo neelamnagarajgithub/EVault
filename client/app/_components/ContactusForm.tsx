@@ -1,24 +1,54 @@
-import { submitContactForm } from "../_lib/actions";
+"use client";
+import { useRef } from "react";
+import emailjs from "@emailjs/browser";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../_store/store";
+import { toggleContactForm } from "../_store/slice";
 
 export default function ContactusForm() {
+  const isopen = useSelector((state: RootState) => state.user.showContactForm);
+  const dispatch = useDispatch();
+  const form = useRef<HTMLFormElement>(null);
+  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (form.current) {
+      console.log(form.current);
+      emailjs
+        .sendForm("service_b5xlxs5", "template_x4r0u0w", form.current, {
+          publicKey: "VtJk5G7bgbHiWSaxi",
+        })
+        .then(
+          () => {
+            console.log("SUCCESS!");
+            (e.target as HTMLFormElement).reset();
+            dispatch(toggleContactForm());
+          },
+          (error) => {
+            console.log("FAILED...", error.text);
+          }
+        );
+    }
+  };
   return (
     <div className="flex justify-center items-center flex-col gap-8">
       <h1 className="text-white">Contact us</h1>
       <form
-        action={submitContactForm}
+        onSubmit={sendEmail}
+        ref={form}
         className="flex justify-center items-center flex-col gap-8"
       >
         <input
           type="text"
+          name="user_name"
           placeholder="Name"
-          name="fulname"
           className="text-xl p-2 bg-blue-100 rounded-lg "
           required
         />
         <input
           type="email"
           placeholder="Email"
-          name="email"
+          name="user_email"
           className="text-xl p-2 bg-blue-100 rounded-lg "
           required
         />
@@ -31,11 +61,12 @@ export default function ContactusForm() {
           className="text-xl p-2 bg-blue-100 rounded-lg "
           required
         ></textarea>
-        <input
+        <button
           type="submit"
-          value="submit"
           className=" bg-blue-500 font-mono text-xl px-4 py-2 rounded-lg hover:bg-blue-950 hover:text-white transition-all duration-500"
-        />
+        >
+          Submit
+        </button>
       </form>
     </div>
   );
