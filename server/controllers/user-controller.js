@@ -21,7 +21,7 @@ const createuser = async (req, res) => {
     });
   } catch (err) {
     res.status(404).json({
-      msg: "page not found",
+      msg: err,
     });
   }
 };

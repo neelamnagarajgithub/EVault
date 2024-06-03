@@ -12,9 +12,9 @@ const userSchema = new mongoose.Schema({
     unique:true,
     validate:[validator.isEmail,"not a valid email"]
   },
-  session:{
+  image:{
     type:String,
-    required:[true,"a session is required for user"]
+    required:[true,"a image is required for user"]
   },
   displayName: String,
   firstName: String,
