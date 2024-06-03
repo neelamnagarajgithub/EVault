@@ -10,7 +10,7 @@ export async function submitLogout() {
 }
 
 export async function submitSigninEmailandPassword(formdata: FormData) {
-  console.log(formdata);
+  // console.log(formdata);
 }
 
 export async function getUser() {
@@ -33,22 +33,8 @@ export async function sendUserDetails() {
       email: session?.user?.email,
       image: session?.user?.image,
     }),
-  });
-
-  // const response = await fetch("http://localhost:7500/api/v1/user", {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  //   body: JSON.stringify(session),
-  // });
-
-  if (response.ok) {
-    console.log("User details sent");
-  } else {
-    console.log("User details not sent");
-  }
+  }).catch((err) => console.log(err));
 
   // return await response.json();
-  console.log(session);
+  // console.log(session);
 }
