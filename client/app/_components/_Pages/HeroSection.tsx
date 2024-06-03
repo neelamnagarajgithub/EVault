@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { BiArrowFromLeft } from "react-icons/bi";
-import ethcoinsvg from "@/public/ethereum_coin.svg";
+import herosectionimage from "@/public/herosectionimage.jpg";
+import Image from "next/image";
 
 export default function HeroSection() {
   return (
@@ -29,8 +30,12 @@ export default function HeroSection() {
             </Link>
           </div>
         </div>
-        <div className=" h-[500px] w-[1000px]">
-          {/* <img src={ethcoinsvg} alt="ethcoinsvg" /> */}
+        <div className=" relative w-[1500px] h-[700px] flex justify-center items-center ">
+          <Image
+            src={herosectionimage}
+            alt="hero-section-image"
+            className="object-cover object-center w-full h-full "
+          />
         </div>
       </div>
     </section>
