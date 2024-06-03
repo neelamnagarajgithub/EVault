@@ -1,6 +1,5 @@
 import NextAuth from "next-auth";
 import google from "next-auth/providers/google";
-import { call } from "viem/actions";
 
 const authConfig = {
   providers: [
