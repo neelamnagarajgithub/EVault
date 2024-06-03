@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { BiArrowFromLeft } from "react-icons/bi";
+import ethcoinsvg from "@/public/ethereum_coin.svg";
 
 export default function HeroSection() {
   return (
     <section className="relative flex flex-col items-center justify-center h-screen w-full">
       <div className=" h-screen w-full flex justify-center items-center px-40">
-        <div className="flex gap-2 flex-col">
-          <h1 className=" text-white text-5xl font-mono font-bold">
+        <div className="flex gap-2 flex-col ">
+          <h1 className=" text-white text-5xl font-mono font-bold ">
             Revolutionizing Legal Record Management with Blockchain Technology
           </h1>
           <p className=" text-white">
@@ -27,6 +28,9 @@ export default function HeroSection() {
               Learn more
             </Link>
           </div>
+        </div>
+        <div className=" h-[500px] w-[1000px]">
+          {/* <img src={ethcoinsvg} alt="ethcoinsvg" /> */}
         </div>
       </div>
     </section>

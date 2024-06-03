@@ -6,6 +6,9 @@ export async function submitContactForm(formData: FormData) {
   const response = await fetch("http://localhost:7500/api/send/email", {
     method: "POST",
     body: formData,
+    headers: {
+      Accept: "application/json",
+    },
   });
 
   if (response.ok) {
