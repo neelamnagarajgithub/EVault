@@ -10,6 +10,7 @@ export default function Page() {
         <Link href="/" className="text-white">
           <LuArrowLeftSquare className="text-3xl" />
         </Link>
+        <h1 className="text-white text-xl">Sign In</h1>
         <div className="gap-4 flex justify-normal items-center flex-col bg-zinc-900 px-8 py-4 rounded-lg">
           <form action={submitLogin}>
             <button className="flex justify-center items-center gap-8 border border-white px-8 py-2 rounded-lg hover:bg-blue-100 hover:text-black text-xl text-white transition-all duration-500">
@@ -26,7 +27,7 @@ export default function Page() {
           >
             <input
               type="email"
-              placeholder="jhondoe@gmail.com"
+              placeholder="johndoe@gmail.com"
               name="email"
               className="px-4 py-2 rounded-lg text-xl bg-zinc-700"
             />
@@ -42,6 +43,7 @@ export default function Page() {
               className="bg-zinc-900 w-[100px] px-3 py-2 font-bold rounded-lg hover:bg-zinc-500 transition-all duration-500 text-white hover:text-black"
             />
           </form>
+
           <div className="flex gap-4">
             <p className="text-blue-100">{`dont't have an account ? `}</p>
             <Link className="text-white" href="/signup">
