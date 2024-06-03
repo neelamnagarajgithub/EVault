@@ -22,3 +22,7 @@ export async function submitLogin() {
 export async function submitLogout() {
   await signOut({ redirectTo: "/" });
 }
+
+export async function submitSigninEmailandPassword(formdata: FormData) {
+  console.log(formdata);
+}
