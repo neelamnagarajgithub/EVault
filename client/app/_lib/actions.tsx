@@ -23,24 +23,25 @@ export async function getUser() {
 
 export async function sendUserDetails() {
   const session = await auth();
-  // const response = await fetch("http://localhost:7500/api/v1/user", {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  //   body: {
-  //     name: session?.user?.name,
-  //     email: session?.user?.email,
-  //   },
-  // });
-
   const response = await fetch("http://localhost:7500/api/v1/user", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(session),
+    body: JSON.stringify({
+      name: session?.user?.name,
+      email: session?.user?.email,
+      image: session?.user?.image,
+    }),
   });
+
+  // const response = await fetch("http://localhost:7500/api/v1/user", {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  //   body: JSON.stringify(session),
+  // });
 
   if (response.ok) {
     console.log("User details sent");
@@ -49,5 +50,5 @@ export async function sendUserDetails() {
   }
 
   // return await response.json();
-  console.log(typeof session);
+  console.log(session);
 }
