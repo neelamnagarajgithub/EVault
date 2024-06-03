@@ -2,8 +2,14 @@ import Link from "next/link";
 import { FaGoogle } from "react-icons/fa";
 import { LuArrowLeftSquare } from "react-icons/lu";
 import { submitLogin, submitSigninEmailandPassword } from "../_lib/actions";
+import { auth } from "../_lib/auth";
+import { redirect } from "next/navigation";
 
-export default function Page() {
+export default async function Page() {
+  const session = await auth();
+  if (session?.user) {
+    redirect("/account");
+  }
   return (
     <div className="h-screen w-full  flex justify-center items-center gap-4">
       <div className="absolute top-0 z-[-2] h-screen w-screen bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#000000_1px)] bg-[size:20px_20px]"></div>

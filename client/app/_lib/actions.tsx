@@ -1,6 +1,6 @@
 "use server";
 
-import { signIn, signOut } from "./auth";
+import { auth, signIn, signOut } from "./auth";
 
 export async function submitContactForm(formData: FormData) {
   const response = await fetch("http://localhost:7500/api/send/email", {
@@ -28,4 +28,12 @@ export async function submitLogout() {
 
 export async function submitSigninEmailandPassword(formdata: FormData) {
   console.log(formdata);
+}
+
+export async function getUser() {
+  const session = await auth();
+  return {
+    name: session?.user?.name,
+    email: session?.user?.email,
+  };
 }

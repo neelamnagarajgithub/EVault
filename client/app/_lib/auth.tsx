@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import google from "next-auth/providers/google";
+import { call } from "viem/actions";
 
 const authConfig = {
   providers: [
@@ -11,6 +12,11 @@ const authConfig = {
   pages: {
     signIn: "/login",
     signOut: "/",
+  },
+  callbacks: {
+    authorized({ auth, request }: { auth: any; request: any }) {
+      return !!auth?.user;
+    },
   },
 };
 
