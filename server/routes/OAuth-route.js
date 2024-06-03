@@ -3,7 +3,7 @@ import express from 'express';
 import session from 'express-session';
 import dotenv from 'dotenv';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
-import User from '../models/auth-model.js';
+import User from '../models/user-model.js';
 
 const googleRouter=express.Router();
 dotenv.config();

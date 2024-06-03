@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 import dotenv from "dotenv";
 import ContactusRouter from './routes/sendgrid-route.js';
 import googleRouter from "./routes/OAuth-route.js";
+import userRouter from './routes/user-route.js';
 const app = express();
 dotenv.config();
 
@@ -27,7 +28,7 @@ if (process.env.NODE_ENV === "development") {
 
 app.use('/',googleRouter);
 app.use('/api',ContactusRouter);
-
+app.use('/api/v1',userRouter);
 
 const port = process.env.PORT || 7500;
 app.listen(port, () => {
