@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   showMenu: false,
   showContactForm: false,
+  showTypeOFView: false,
 };
 
 export const userSlice = createSlice({
@@ -15,8 +16,12 @@ export const userSlice = createSlice({
     toggleContactForm: (state) => {
       state.showContactForm = !state.showContactForm;
     },
+    toggleTypeOfView: (state) => {
+      state.showTypeOFView = !state.showTypeOFView;
+    },
   },
 });
 
-export const { toggleMenu, toggleContactForm } = userSlice.actions;
+export const { toggleMenu, toggleContactForm, toggleTypeOfView } =
+  userSlice.actions;
 export default userSlice.reducer;

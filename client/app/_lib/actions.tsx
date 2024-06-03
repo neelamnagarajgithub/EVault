@@ -34,7 +34,4 @@ export async function sendUserDetails() {
       image: session?.user?.image,
     }),
   }).catch((err) => console.log(err));
-
-  // return await response.json();
-  // console.log(session);
 }
