@@ -4,6 +4,10 @@ const initialState = {
   showMenu: false,
   showContactForm: false,
   showTypeOFView: false,
+  file: File,
+  fileUrl: "",
+  uploaded: false,
+  uploadLoading: false,
 };
 
 export const userSlice = createSlice({
@@ -19,9 +23,29 @@ export const userSlice = createSlice({
     toggleTypeOfView: (state) => {
       state.showTypeOFView = !state.showTypeOFView;
     },
+    setFile: (state, action) => {
+      console.log(action.payload);
+      state.file = action.payload;
+    },
+    setFileUrl: (state, action) => {
+      state.fileUrl = action.payload;
+    },
+    setUploaded: (state) => {
+      state.uploaded = !state.uploaded;
+    },
+    setUploadLoading: (state) => {
+      state.uploadLoading = !state.uploadLoading;
+    },
   },
 });
 
-export const { toggleMenu, toggleContactForm, toggleTypeOfView } =
-  userSlice.actions;
+export const {
+  toggleMenu,
+  toggleContactForm,
+  toggleTypeOfView,
+  setFile,
+  setFileUrl,
+  setUploaded,
+  setUploadLoading,
+} = userSlice.actions;
 export default userSlice.reducer;
