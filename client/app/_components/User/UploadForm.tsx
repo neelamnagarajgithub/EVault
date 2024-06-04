@@ -33,9 +33,8 @@ export default function UploadForm() {
       url: "https://api.pinata.cloud/pinning/pinFileToIPFS",
       data: fileData,
       headers: {
-        pinata_api_key: "7a8eca4b20f1010eecba",
-        pinata_secret_api_key:
-          "000f965f75c3f876685654b0edbc54d95e81e038deb37b2f8290cbafff5402b0",
+        pinata_api_key: "",
+        pinata_secret_api_key: "",
         "Content-Type": "multipart/form-data",
       },
     });
