@@ -9,11 +9,11 @@ const app = express();
 dotenv.config();
 
 app.use(express.json());
-// app.use(cors({
-//   origin:"http://localhost:3000",
-//   methods:['GET','POST'],
-//   credentials:true,
-// }))
+app.use(cors({
+  origin:"http://localhost:3000",
+  methods:['GET','POST'],
+  credentials:true,
+}))
 
 const DB=process.env.MONGO_DB_URL.replace('<password>',process.env.MONGO_PASSWORD);
 
