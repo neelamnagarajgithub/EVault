@@ -8,8 +8,6 @@ export default async function Page() {
   return (
     <div className="flex flex-col items-center justify-center h-[90vh] bg-neutral-950 w-full">
       <h1 className="text-3xl font-semibold text-white">Welcome to EVault</h1>
-      <p className="text-lg mt-4 text-white">{session?.user?.name}</p>
-      <p className="text-lg mt-4 text-white">{session?.user?.email}</p>
     </div>
   );
 }
