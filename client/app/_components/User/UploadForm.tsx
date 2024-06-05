@@ -1,17 +1,15 @@
 "use client";
 import {
   setFile,
+  setFileUrl,
   setUploadLoading,
   setUploaded,
   toggleTypeOfView,
 } from "@/app/_store/slice";
 import { RootState } from "@/app/_store/store";
-import axios from "axios";
 import { VscChromeClose } from "react-icons/vsc";
 import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
-import { ethers } from "ethers";
-import {abi } from "../../../../artifacts/contracts/NFT_ERC731.json";
+import axios from "axios";
 
 export default function UploadForm() {
   const dispatch = useDispatch();
@@ -23,7 +21,7 @@ export default function UploadForm() {
     (state: RootState) => state.user.uploadLoading
   );
 
-  const uploadFiles = async (e) => {
+  async function uploadFiles(e) {
     e.preventDefault();
     dispatch(setUploadLoading());
 
@@ -40,27 +38,14 @@ export default function UploadForm() {
         "Content-Type": "multipart/form-data",
       },
     });
+
     const fileURL = "https://ipfs.io/ipfs/" + responseData.data.IpfsHash;
     console.log(fileURL);
+    dispatch(setFileUrl(fileURL));
     dispatch(setUploadLoading());
-    // setUploaded(true);
     dispatch(setUploaded());
-    toast.success("Files Uploaded Sucessfully");
-  };
-const NFTMint= async (userAddress, username, email, fileURL) => {
-  let provider = new ethers.providers.Web3Provider(window.ethereum);
-  let signer = provider.getSigner();
-  
-  const contractABI = abi; 
-  const contractAddress = '0xd6105FbF32Dcba6f35236eD1D4c528570C27F768'; 
-  console.log(abi)
-  let contract = new ethers.Contract(contractAddress, contractABI, signer);
-  
-  const tx = await contract.awardDoc(userAddress, username, email, fileURL);
-  await tx.wait();
-  const tokenId = receipt.events ? receipt.events[0].args.tokenId : null;
-  console.log(tokenId);
-}
+  }
+
   return (
     <div className=" bg-neutral-900 px-10 py-5 rounded-lg flex flex-col justify-center items-start gap-8">
       <button
@@ -71,9 +56,8 @@ const NFTMint= async (userAddress, username, email, fileURL) => {
         <VscChromeClose className=" text-white text-3xl" />
       </button>
       <form
-        action=""
-        className="flex flex-col gap-8 justify-center items-center"
         onSubmit={uploadFiles}
+        className="flex flex-col gap-8 justify-center items-center"
       >
         <input
           type="file"
