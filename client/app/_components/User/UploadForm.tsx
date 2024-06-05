@@ -10,6 +10,8 @@ import axios from "axios";
 import { VscChromeClose } from "react-icons/vsc";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { ethers } from "ethers";
+import {abi } from "../../../../artifacts/contracts/NFT_ERC731.json";
 
 export default function UploadForm() {
   const dispatch = useDispatch();
@@ -45,7 +47,20 @@ export default function UploadForm() {
     dispatch(setUploaded());
     toast.success("Files Uploaded Sucessfully");
   };
-
+const NFTMint= async (userAddress, username, email, fileURL) => {
+  let provider = new ethers.providers.Web3Provider(window.ethereum);
+  let signer = provider.getSigner();
+  
+  const contractABI = abi; 
+  const contractAddress = '0xd6105FbF32Dcba6f35236eD1D4c528570C27F768'; 
+  console.log(abi)
+  let contract = new ethers.Contract(contractAddress, contractABI, signer);
+  
+  const tx = await contract.awardDoc(userAddress, username, email, fileURL);
+  await tx.wait();
+  const tokenId = receipt.events ? receipt.events[0].args.tokenId : null;
+  console.log(tokenId);
+}
   return (
     <div className=" bg-neutral-900 px-10 py-5 rounded-lg flex flex-col justify-center items-start gap-8">
       <button
@@ -88,9 +103,9 @@ export default function UploadForm() {
           </button>
         ) : (
           <button className=" bg-neutral-800 text-white w-fit px-3 py-2 rounded-lg font-bold font-mono hover:bg-neutral-700 transition-colors duration-300 ease-in-out">
-            Files uploaded Successfully. {fileUrl}
+            Files uploaded Successfully.
           </button>
-        )}
+        ) }
       </form>
     </div>
   );

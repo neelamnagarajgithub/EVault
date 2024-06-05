@@ -1,8 +1,8 @@
 const { buildModule } = require("@nomicfoundation/hardhat-ignition/modules");
 
-module.exports = buildModule("StoreModule", (m) => {
+module.exports = buildModule("NFTmodule", (m) => {
 
-  const storeipfs = m.contract("Store", []);
-  console.log(storeipfs.address);
-  return { storeipfs };
+  const NFT_ERC721 = m.contract("NFT_ERC721", []);
+  console.log(NFT_ERC721.address);
+  return { NFT_ERC721 };
 });
