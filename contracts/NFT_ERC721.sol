@@ -46,8 +46,9 @@ contract NFT_ERC721 is ERC721URIStorage {
         return tokenURI(_tokenId);
     }
 
-    function viewOwner(uint256 _tokenId) public view returns(address) {
-        return ownerOf(_tokenId);
+    function viewOwner(uint256 _tokenId) public view returns(User memory) {
+        address _owneraddr=ownerOf(_tokenId);
+        return users[_owneraddr][0];
     }
 
     function cancelDoc(uint256 _tokenId) public {

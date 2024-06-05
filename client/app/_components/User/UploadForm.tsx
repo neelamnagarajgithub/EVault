@@ -56,7 +56,7 @@ export default function UploadForm() {
     let signer = provider.getSigner();
     const contractABI = abi;
     const contractAddress =
-      "0xd6105FbF32Dcba6f35236eD1D4c528570C27F768";
+      "0x5c336690Bf2D4a1041A344C316820AE0BBA95CE1";
     let contract = new ethers.Contract(contractAddress, contractABI, signer);
     const tx = await contract.awardDoc(
       "0xb0fe3609B64E6b469e631678e10651fE4c6cD67e",

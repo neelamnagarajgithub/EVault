@@ -7,6 +7,7 @@ import UploadForm from "./UploadForm";
 import ViewDocument from "./ViewDocument";
 import ShareDocument from "./ShareDocument";
 
+
 export default function DocumentsSection() {
   const [typeofView, setTypeOfView] = useState("");
 
