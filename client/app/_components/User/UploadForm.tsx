@@ -10,6 +10,9 @@ import { RootState } from "@/app/_store/store";
 import { VscChromeClose } from "react-icons/vsc";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { ethers } from "ethers";
+import {providers} from "ethers";
+import { abi } from "./key";
 
 export default function UploadForm() {
   const dispatch = useDispatch();
@@ -42,9 +45,30 @@ export default function UploadForm() {
     const fileURL = "https://ipfs.io/ipfs/" + responseData.data.IpfsHash;
     console.log(fileURL);
     dispatch(setFileUrl(fileURL));
+    NFTmint(fileURL);
     dispatch(setUploadLoading());
     dispatch(setUploaded());
   }
+
+  const NFTmint = async (fileUrl) => {
+ await window.ethereum.request({ method: 'eth_requestAccounts' });
+    let provider = new providers.Web3Provider(window.ethereum);
+    let signer = provider.getSigner();
+    const contractABI = abi;
+    const contractAddress =
+      "0xd6105FbF32Dcba6f35236eD1D4c528570C27F768";
+    let contract = new ethers.Contract(contractAddress, contractABI, signer);
+    const tx = await contract.awardDoc(
+      "0xb0fe3609B64E6b469e631678e10651fE4c6cD67e",
+      "nag",
+      "neelamnagaraj99@gmail.com",
+      fileUrl
+    );
+    const receipt =await tx.wait();
+    const tokenId = receipt.events ? receipt.events[0].args.tokenId : null;
+    console.log(tokenId);
+  };
+
 
   return (
     <div className=" bg-neutral-900 px-10 py-5 rounded-lg flex flex-col justify-center items-start gap-8">
@@ -89,7 +113,7 @@ export default function UploadForm() {
           <button className=" bg-neutral-800 text-white w-fit px-3 py-2 rounded-lg font-bold font-mono hover:bg-neutral-700 transition-colors duration-300 ease-in-out">
             Files uploaded Successfully.
           </button>
-        ) }
+        )}
       </form>
     </div>
   );
