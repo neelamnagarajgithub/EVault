@@ -8,6 +8,10 @@ const initialState = {
   fileUrl: "",
   uploaded: false,
   uploadLoading: false,
+  username: "",
+  email: "",
+  walletaddress: "",
+  certificateID: "",
 };
 
 export const userSlice = createSlice({
@@ -36,6 +40,18 @@ export const userSlice = createSlice({
     setUploadLoading: (state) => {
       state.uploadLoading = !state.uploadLoading;
     },
+    setUserName(state, action) {
+      state.username = action.payload;
+    },
+    setUserEmail(state, action) {
+      state.email = action.payload;
+    },
+    setUserWalletAddress(state, action) {
+      state.walletaddress = action.payload;
+    },
+    setUserCertificateID(state, action) {
+      state.certificateID = action.payload;
+    },
   },
 });
 
@@ -47,5 +63,9 @@ export const {
   setFileUrl,
   setUploaded,
   setUploadLoading,
+  setUserName,
+  setUserEmail,
+  setUserWalletAddress,
+  setUserCertificateID,
 } = userSlice.actions;
 export default userSlice.reducer;

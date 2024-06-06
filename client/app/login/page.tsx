@@ -1,9 +1,9 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { FaGoogle } from "react-icons/fa";
 import { LuArrowLeftSquare } from "react-icons/lu";
 import { submitLogin, submitSigninEmailandPassword } from "../_lib/actions";
 import { auth } from "../_lib/auth";
-import { redirect } from "next/navigation";
 
 export default async function Page() {
   const session = await auth();
