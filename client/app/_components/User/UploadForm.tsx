@@ -16,6 +16,7 @@ import axios from "axios";
 import { ethers } from "ethers";
 import { providers } from "ethers";
 import { abi } from "./key";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function UploadForm() {
   const dispatch = useDispatch();
@@ -32,29 +33,53 @@ export default function UploadForm() {
   );
 
   async function uploadFiles(e) {
-    e.preventDefault();
-    dispatch(setUploadLoading());
+    try {
+      e.preventDefault();
+      dispatch(setUploadLoading());
 
-    const fileData = new FormData();
-    fileData.append("file", file);
+      const fileData = new FormData();
+      fileData.append("file", file);
 
-    const responseData = await axios({
-      method: "post",
-      url: "https://api.pinata.cloud/pinning/pinFileToIPFS",
-      data: fileData,
-      headers: {
-        pinata_api_key: process.env.NEXT_PUBLIC_PINATA_API_KEY,
-        pinata_secret_api_key: process.env.NEXT_PUBLIC_PINATA_SECRET_API_KEY,
-        "Content-Type": "multipart/form-data",
-      },
-    });
+      const responseData = await axios({
+        method: "post",
+        url: "https://api.pinata.cloud/pinning/pinFileToIPFS",
+        data: fileData,
+        headers: {
+          pinata_api_key: process.env.NEXT_PUBLIC_PINATA_API_KEY,
+          pinata_secret_api_key: process.env.NEXT_PUBLIC_PINATA_SECRET_API_KEY,
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
-    const fileURL = "https://ipfs.io/ipfs/" + responseData.data.IpfsHash;
-    console.log(fileURL);
-    dispatch(setFileUrl(fileURL));
-    NFTmint(fileURL);
-    dispatch(setUploadLoading());
-    dispatch(setUploaded());
+      const fileURL = "https://ipfs.io/ipfs/" + responseData.data.IpfsHash;
+      console.log(fileURL);
+      dispatch(setFileUrl(fileURL));
+      NFTmint(fileURL);
+      dispatch(setUploadLoading());
+      dispatch(setUploaded());
+      toast.success("File uploaded succesfully!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    } catch (err: any) {
+      console.log(err.message);
+      toast.error(err.message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
   }
 
   const NFTmint = async (fileUrl) => {
@@ -68,6 +93,16 @@ export default function UploadForm() {
     const receipt = await tx.wait();
     const tokenId = receipt.events ? receipt.events[0].args.tokenId : null;
     console.log(tokenId);
+    toast.success(`File Token ID: ${tokenId._hex}`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
   };
 
   return (
@@ -152,6 +187,18 @@ export default function UploadForm() {
           </button>
         )}
       </form>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </div>
   );
 }

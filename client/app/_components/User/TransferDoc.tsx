@@ -29,6 +29,16 @@ export default function ShareDocument() {
       );
       console.log(tx);
       setSuccesfullTransfer(true);
+      toast.success("Your certificate has been transfered!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     } catch (e) {
       if (
         e.reason ===
@@ -116,7 +126,7 @@ export default function ShareDocument() {
           theme="dark"
         />
       </div>
-      <div className="bg-red-500">afasf</div>
+      {succesfullTransfer && <div className="bg-red-500">afasf</div>}
     </div>
   );
 }
