@@ -12,16 +12,19 @@ export default function VerifyDoc() {
 
 
     const NFTViewOwner = async (e) => {
+      try{
         e.preventDefault();
         await window.ethereum.request({ method: 'eth_requestAccounts' });
            let provider = new providers.Web3Provider(window.ethereum);
            let signer = provider.getSigner();
            const contractABI = abi;
            const contractAddress =
-             "0x5c336690Bf2D4a1041A344C316820AE0BBA95CE1";
+             "0x69A9C4d84E14762DE925d3502aAC02Cf3a76230D";
            let contract = new ethers.Contract(contractAddress, contractABI, signer);
-           const tx = await contract.viewOwner(0);
+           const tx = await contract.viewOwner(2);
            console.log(tx);
+      }catch(e){
+        console.log("This is Not Belongs to you");
          };
 
     return (

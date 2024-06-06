@@ -47,9 +47,10 @@ contract NFT_ERC721 is ERC721URIStorage {
     }
 
     function viewOwner(uint256 _tokenId) public view returns(User memory) {
-        address _owneraddr=ownerOf(_tokenId);
-        return users[_owneraddr][0];
-    }
+    address _owneraddr = ownerOf(_tokenId);
+    require(users[_owneraddr].length > 0, "No users for this address");
+    return users[_owneraddr][0];
+}
 
     function cancelDoc(uint256 _tokenId) public {
         require(ownerOf(_tokenId) == msg.sender, "You are not the owner of this token");
