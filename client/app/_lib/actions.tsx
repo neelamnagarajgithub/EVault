@@ -18,6 +18,7 @@ export async function getUser() {
   return {
     name: session?.user?.name,
     email: session?.user?.email,
+    image: session?.user?.image,
   };
 }
 
